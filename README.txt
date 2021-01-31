@@ -3,5 +3,7 @@ ionic build
 npx cap add android  
 npx cap add ios  
 
-
 ionic cap run android -l --external  
+
+NOTA: after chaning icons/sounds make sync with your target project  
+
