@@ -1,0 +1,7 @@
+{
+  "name": "sg-ionic-local-notification",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
