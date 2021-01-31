@@ -11,7 +11,7 @@
     "LocalNotifications": {
       "smallIcon": "ionic_notification",
       "iconColor": "#FF0000",
-      "sound": "CantinaBand3"
+      "sound": "cantina_band3.wav"
     }
   },
   "cordova": {},

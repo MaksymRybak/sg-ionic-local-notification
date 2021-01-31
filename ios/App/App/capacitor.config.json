@@ -1,1 +1,22 @@
-{}
+{
+  "appId": "io.ionic.starter",
+  "appName": "sg-ionic-local-notification",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "LocalNotifications": {
+      "smallIcon": "ionic_notification",
+      "iconColor": "#FF0000",
+      "sound": "CantinaBand3.wav"
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.0.9:8100",
+    "cleartext": true
+  }
+}
