@@ -5,5 +5,5 @@ npx cap add ios
 
 ionic cap run android -l --external  
 
-NOTA: after chaning icons/sounds make sync with your target project  
-
+NOTE: after chaning icons/sounds make sync with your target project  
+NOTE: to make notification sound works re-install your app??  
