@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Plugins } from "@capacitor/core";
+import { LocalNotification, LocalNotificationActionPerformed, Plugins } from "@capacitor/core";
 import { AlertController } from "@ionic/angular";
 const { LocalNotifications } = Plugins;
 
@@ -33,11 +33,20 @@ export class HomePage implements OnInit {
             {
               id: "respond",
               title: "Respond",
-              input: true,            // like quick reply with a message NICE!!!
+              input: true, // like quick reply with a message NICE!!!
             },
           ],
         },
       ],
+    });
+  
+    // notification listeners
+    LocalNotifications.addListener('localNotificationReceived', (notification: LocalNotification) => {
+      this.presentAlert(`Action Received: ${notification.title}`, `Custom Data: ${JSON.stringify(notification.extra)}`);
+    });
+    
+    LocalNotifications.addListener('localNotificationActionPerformed', (notification: LocalNotificationActionPerformed) => {
+      this.presentAlert(`Action Performed: ${notification.actionId}`, `Custom Data: ${JSON.stringify(notification.inputValue)}`);
     });
   }
 
@@ -67,13 +76,24 @@ export class HomePage implements OnInit {
           extra: {
             data: "pass data to you handler",
           },
-          iconColor: "#0000FF", 
-          actionTypeId: 'CHAT_MSG',
+          iconColor: "#0000FF",
+          actionTypeId: "CHAT_MSG",
           attachments: [
-            { id: 'face', url: 'res://public/assets/icon_x_notification.jpg'}  // NOTE: we can use face for id and specify the path in our app, it's an open issue on ionic to download the image using http
-          ]
+            { id: "face", url: "res://public/assets/icon_x_notification.jpg" }, // NOTE: we can use face for id and specify the path in our app, it's an open issue on ionic to download the image using http
+          ],
+          // schedule: { at: new Date(Date.now() + 1000 * 3) },  // different options available for scheduling
         },
       ],
     });
+  }
+
+  async presentAlert(header, message) {
+    const alert = await this.alertCtrl.create({
+      header,
+      message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
